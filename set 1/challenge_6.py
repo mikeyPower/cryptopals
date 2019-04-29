@@ -42,20 +42,24 @@ def hamming_distance(string1,string2):
         dif = len(bin1)-len(bin2)
         for i in range(dif):
             bin2='0'+bin2
+
+        #print(bin2)
     elif len(bin2)>len(bin1):
         dif = len(bin2)-len(bin1)
         for i in range(dif):
             bin1='0'+bin1
+        #print(bin1)
     else:
         dif =0
 
-    print(len(bin1))
-    print(len(bin2))
+    #print(len(bin1))
+    #print(len(bin2))
 
     dif = 0
     for i in range(len(bin1)):
+        print(bin1[i],bin2[i])
         if(bin1[i]!=bin2[i]):
-            print(bin1[i],bin2[i])
+            #print(bin1[i],bin2[i])
             dif+=1
 
 
@@ -81,7 +85,7 @@ def main():
     string2 = "wokka wokka!!!"
     print(string_to_binary(string1))
     print(string_to_binary(string2))
-    #print(hamming_distance(string1,string2))
+    print(hamming_distance(string1,string2))
 
 if __name__ == "__main__":
     main()
