@@ -8,22 +8,41 @@ Detect it.
 
 Remember that the problem with ECB is that it is stateless and deterministic; the same 16 byte plaintext block will always produce the same 16 byte ciphertext.
 '''
-
+#Not Completed
 
 import base64
 from Crypto.Cipher import AES
 
-def main():
+def main(): 
+    for i in open('8.txt'):
+        ciphertext = [bytes.fromhex(i.strip())
 
-    with open('7.txt') as fh:
+    bsize = 16
 
-        ciphertext = base64.b64decode(fh.read())
 
-    print(ciphertext)
-    key = b'YELLOW SUBMARINE'
-    cipher = AES.new(key, AES.MODE_ECB)
-    plaintext = cipher.decrypt(ciphertext)
-    print(plaintext)
+
+   # print(ciphertext)
+   # print(len(ciphertext))
+
+
+    block = [ciphertext[i:i+bsize] for i in range(0, len(ciphertext), bsize)]
+    print(len(set(block)))
+    no_repeat = len(block) - len(set(block))
+    result = {
+      'ciphertext': ciphertext,
+      'repetitions': no_repeat
+    }
+
+    repeating = [result for cipher in ciphertext]
+
+
+    most_repeating = sorted(repeating, key=lambda x: x['repetitions'], reverse=True)[0]
+   # key = b'YELLOW SUBMARINE'
+   # cipher = AES.new(key, AES.MODE_ECB)
+   # plaintext = cipher.decrypt(ciphertext[0])
+    print("Ciphertext: {}".format(most_repeating['ciphertext']))
+    print("Repeating Blocks: {}".format(most_repeating['repetitions']))
+   # print(plaintext)
 
 if __name__ == "__main__":
     main()
