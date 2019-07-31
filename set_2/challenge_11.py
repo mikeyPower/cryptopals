@@ -58,6 +58,8 @@ def main():
     while(exit > 0):
         key = random_key_iv()
         iv = random_key_iv()
+        print(key)
+        print(iv)
         message = input("Enter message to be encrypted: ").encode("utf-8")
         new_message = add_padding(message)#.encode("utf-8")
         count = random.randint(0, 2)
@@ -72,7 +74,7 @@ def main():
                 while(i < 16-(length%16)):
                     new_message+=zero
                     i+=1
-                    print(new_message)
+                    #print(new_message)
             print(ecb(key,new_message))
 
         else:

@@ -1,4 +1,4 @@
-'''
+cle'''
 Detect AES in ECB mode
 In this file are a bunch of hex-encoded ciphertexts.
 
@@ -13,20 +13,21 @@ Remember that the problem with ECB is that it is stateless and deterministic; th
 import base64
 from Crypto.Cipher import AES
 
-def main(): 
-    for i in open('8.txt'):
-        ciphertext = [bytes.fromhex(i.strip())
+def main():
+    for i in open('8.txt','rb'):
+        #print(i)
+        ciphertext =[i.strip().decode('utf-8')]
 
     bsize = 16
 
 
 
-   # print(ciphertext)
+    print(ciphertext)
    # print(len(ciphertext))
 
 
     block = [ciphertext[i:i+bsize] for i in range(0, len(ciphertext), bsize)]
-    print(len(set(block)))
+    print(type(block))
     no_repeat = len(block) - len(set(block))
     result = {
       'ciphertext': ciphertext,
